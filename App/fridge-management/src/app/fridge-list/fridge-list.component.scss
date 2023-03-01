@@ -1,0 +1,65 @@
+h1 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.add {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+  padding-bottom: 20px;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(to top, #ffefba, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  background-color: #ffefba;
+}
+
+.card-content {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.card-footer-text {
+  color: #999;
+}
+
+.card-footer-quantity {
+  font-weight: bold;
+}
+
+.card-footer-expiry {
+  color: #f00;
+  font-weight: bold;
+}

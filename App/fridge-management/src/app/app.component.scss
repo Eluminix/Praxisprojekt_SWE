@@ -1,0 +1,41 @@
+html,
+body {
+  height: 100%;
+}
+
+/* Set the height of the root container to 100% */
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Set the height of the main content area to fill remaining space */
+
+.main-content {
+  margin-top: 56px;
+  padding-bottom: 90px;
+  height: 100%; /* Set the height of the container to the height of the viewport */
+  width: 100%; /* Set the width of the container to 100% */
+//  display: flex; /* Use flexbox to align the content */
+//  justify-content: center; /* Center the content horizontally */
+ // align-items: center; /* Center the content vertically */
+  text-align: center;
+}
+
+/* Position the footer at the bottom of the page
+.footer {
+  position: relative;
+ // bottom: 0;
+ 
+}
+ */
+.footer {
+  position:relative;
+  bottom:0px;
+  width: 100%;
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}

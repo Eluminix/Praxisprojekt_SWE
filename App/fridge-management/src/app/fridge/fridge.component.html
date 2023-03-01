@@ -1,0 +1,117 @@
+
+<div class="imageContainer">
+    <img src="/assets/images/2.jpg" alt="image">
+    <div class="centeredText">
+        "If your looking for a fridge management tool,<br>
+        your in the right place"
+    </div>
+</div>
+
+<div class="overview">
+<mat-grid-list cols="2" rowHeight="200px" >
+   
+    <mat-grid-tile [colspan]=1 [rowspan]=3>
+        <div class="content">
+            <h1>Your own Fridge Management App</h1>
+            <p>The App will help you to manage your Fridge Items. Add, Edit or Delete Items. It will
+                also create a Shopinglist automatically if the items are going to expire or the quantity is low!
+            </p>
+        </div>
+    </mat-grid-tile>
+
+
+
+
+
+    <mat-grid-tile [colspan]=1 [rowspan]=1>
+        <div class="content">
+             <h1>Fridge Item List</h1>
+             <p>Here you can see your Items in the Fridge</p> 
+        <button mat-fab extended color="primary" routerLink="/fridge/list">
+           <mat-icon>fastfood</mat-icon>
+           Items
+         </button>
+            </div>
+</mat-grid-tile>
+
+
+
+<mat-grid-tile [colspan]=1 [rowspan]=1>
+    <div class="content">
+    <h1>Fridge Shoppinglist</h1>
+    <p>Here you can see the Items which are expiring or with low quantity</p>
+    <button mat-fab extended color="primary" style="text-align: center;" routerLink="/fridge/shoppinglist">
+       <mat-icon>shopping_cart</mat-icon>
+       Shoppinglist
+     </button>
+    </div>
+</mat-grid-tile>
+
+
+
+<mat-grid-tile [colspan]=1 [rowspan]=1>
+    <div class="content">  
+    <h1>Fridge Statistics</h1>
+    <p>Here you can see statistics about the Fridge Items</p>
+    <button mat-fab extended color="primary" style="text-align: center;" routerLink="/fridge/stats">
+       <mat-icon>pie_chart</mat-icon>
+       Statistics
+     </button> 
+     </div>
+</mat-grid-tile>
+
+  </mat-grid-list>
+</div>
+
+
+
+<div class="app">
+    
+    <h1>Official WebApp</h1>
+    <h2>Now for your Smartphone</h2>
+       <p>You can donwload the progressive WebApp to use the Fridge Management on your Smartphone or Tablet</p>
+      
+
+      <div class="stepper">
+      <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Go to Options</ng-template>
+                <h1>OPTIONS</h1>
+                <mat-icon>settings</mat-icon>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Download WebApp</ng-template>
+            <h1>WebApp</h1>
+            <mat-icon>settings</mat-icon>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+   
+   </div>
+   
+    </div>
+
+
+  
+
+
+ 
+
