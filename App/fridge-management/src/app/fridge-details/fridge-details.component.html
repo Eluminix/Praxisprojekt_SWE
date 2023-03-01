@@ -1,0 +1,60 @@
+<div class="container">
+
+
+<mat-tab-group animationDuration="2000ms">
+  <mat-tab class="mx-auto d-block text-center">
+    <ng-template mat-tab-label>
+    <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+    First
+  </ng-template>
+
+  <div class="tab-content-center">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <mat-card-subtitle>{{item.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="" alt="{{item.name}}">
+      <mat-card-content>
+        <p>{{item.name}}</p>
+        <div class="example-flex-container">
+          <div>
+            <mat-icon>date_range</mat-icon>
+            <span class="example-label">Exp. Date:</span>
+            <span>{{item.expiryDate | date:'mediumDate'}}</span>
+          </div>
+          <div>
+            <mat-icon>storage</mat-icon>
+            <span class="example-label">Quantity:</span>
+            <span>{{item.quantity}}</span>
+          </div>
+          <div>
+            <mat-icon>attach_money</mat-icon>
+            <span class="example-label">Price:</span>
+            <span>{{5 | currency:'USD'}}</span>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="/edit/{{item.id}}">Edit</button>
+        <button mat-raised-button color="accent" >Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  </mat-tab>
+  <mat-tab label="Second">
+
+    <div class="tab-content-center">
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+     </div>
+    
+  </mat-tab>
+  <mat-tab label="Third">Content 3
+
+  </mat-tab>
+</mat-tab-group>
+</div>
+ 
+ 

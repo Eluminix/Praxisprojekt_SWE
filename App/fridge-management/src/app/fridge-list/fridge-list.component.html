@@ -1,0 +1,36 @@
+<div class="header">
+  <h1>Fridge Items</h1>
+</div>
+<div class="add">
+  <button mat-fab color="primary" style="color:blue" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<mat-grid-list cols="3" rowHeight="350px">
+  <mat-grid-tile *ngFor="let item of fridgeItems">
+    <mat-card class="card">
+      <mat-card-header class="card-header">
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
+      </mat-card-header>
+    	<mat-icon class="mx-auto d-block text-center"> fastfood</mat-icon>
+      <img mat-card-image src="">
+      <mat-card-content class="card-content">
+        <p>Hier kommt die Beschreibung rein von jedem einzelnen Teil</p>
+        <p>Quantity: {{item.quantity}}</p>
+        <p>Expires on: {{item.expiryDate | date}}</p>
+      </mat-card-content>
+      <mat-card-footer class="card-footer">
+        <mat-card-actions>
+          
+          <mat-icon routerLink="detail/{{item.id}}">search</mat-icon>
+          <mat-icon (click)="delete(item)">delete</mat-icon>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+

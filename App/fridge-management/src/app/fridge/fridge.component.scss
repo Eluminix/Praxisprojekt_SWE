@@ -1,0 +1,57 @@
+
+
+  .container {
+    height: 100vh; /* Set the height of the container to the height of the viewport */
+    width: 100%; /* Set the width of the container to 100% */
+   // display: flex; /* Use flexbox to align the content */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    text-align: center;
+ }
+ 
+
+ .app {
+    background: linear-gradient(to right, rgb(189, 195, 199), rgb(44, 62, 80));
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 40px;
+    //border-radius: 15px;
+  }
+
+  .imageContainer {
+    position: relative;
+    text-align: center;
+  }
+
+img {
+    width: 100%;
+   // height: 70%;
+   
+}
+  .centeredText {
+    position: absolute;
+    font-size: 30px;
+    top: 50%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .overview {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+ 
+  .content {
+    flex-direction: column;
+}
+
+.stepper {
+    padding-top: 60px;
+}
+
+  

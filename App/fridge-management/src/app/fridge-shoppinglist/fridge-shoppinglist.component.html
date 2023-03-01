@@ -1,0 +1,13 @@
+ <h1>Shopping List</h1>
+ <div class="container">
+  
+    <h2>Low Quantity Items:</h2>
+    <ul>
+      <li *ngFor="let item of lowQuantityItems">{{ item.name }} ({{ item.quantity }})</li>
+    </ul>
+  
+    <h2>Soon to Expire Items:</h2>
+    <ul>
+      <li *ngFor="let item of soonToExpireItems">{{ item.name }} ({{ item.expiryDate | date:'medium' }})</li>
+    </ul>
+  </div>
