@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FridgeService } from '../fridge.service';
 import { FridgeItem } from '../fridge-item.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fridge-details',
@@ -13,7 +14,7 @@ export class FridgeDetailsComponent implements OnInit {
   itemId: number = 0;
   item!: FridgeItem;
 
-  constructor(private route: ActivatedRoute, private fridgeService: FridgeService) { }
+  constructor(private route: ActivatedRoute, private fridgeService: FridgeService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -28,6 +29,12 @@ export class FridgeDetailsComponent implements OnInit {
 
   deleteFridgeItem(itemId: number): void {
     // Implement the delete functionality here
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

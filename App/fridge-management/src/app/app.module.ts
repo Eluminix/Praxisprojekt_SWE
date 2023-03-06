@@ -31,7 +31,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FridgeShoppinglistComponent } from './fridge-shoppinglist/fridge-shoppinglist.component';
 import { FridgeNavigationComponent } from './fridge-navigation/fridge-navigation.component';
 import { FridgeProfileComponent } from './fridge-profile/fridge-profile.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FridgeFooterComponent } from './fridge-footer/fridge-footer.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -47,7 +51,8 @@ import { FridgeProfileComponent } from './fridge-profile/fridge-profile.componen
     FridgeComponent,
     FridgeShoppinglistComponent,
     FridgeNavigationComponent,
-    FridgeProfileComponent
+    FridgeProfileComponent,
+    FridgeFooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,11 @@ import { FridgeProfileComponent } from './fridge-profile/fridge-profile.componen
     BrowserAnimationsModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatMenuModule,
+    LayoutModule
     
     
   ],

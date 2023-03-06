@@ -1,0 +1,44 @@
+
+
+/* Set the height of the main content area to fill remaining space */
+
+.main-content {
+ 
+  width: 100%; /* Set the width of the container to 100% */
+//  display: flex; /* Use flexbox to align the content */
+//  justify-content: center; /* Center the content horizontally */
+ // align-items: center; /* Center the content vertically */
+  text-align: center;
+}
+
+
+.sidenav-container {
+  height: 100%;
+
+}
+.sidenav {
+  width: 250px;
+}
+
+.sidenav .mat-toolbar {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+.mat-toolbar.mat-primary {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.menuButton {
+ font-size: 0;
+}
+
+.navButton {
+  padding-top: 4px;
+}
+  
+
+ 
