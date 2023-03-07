@@ -1,63 +1,128 @@
 <div class="container">
-
-
-<mat-tab-group animationDuration="2000ms">
-  <mat-tab class="mx-auto d-block text-center">
-    <ng-template mat-tab-label>
-    <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-    First
-  </ng-template>
-
-  <div class="tab-content-center">
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title>{{item.name}}</mat-card-title>
-        <mat-card-subtitle>{{item.name}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="" alt="{{item.name}}">
-      <mat-card-content>
-        <p>{{item.name}}</p>
-        <div class="example-flex-container">
-          <div>
-            <mat-icon>date_range</mat-icon>
-            <span class="example-label">Exp. Date:</span>
-            <span>{{item.expiryDate | date:'mediumDate'}}</span>
-          </div>
-          <div>
-            <mat-icon>storage</mat-icon>
-            <span class="example-label">Quantity:</span>
-            <span>{{item.quantity}}</span>
-          </div>
-          <div>
-            <mat-icon>attach_money</mat-icon>
-            <span class="example-label">Price:</span>
-            <span>{{5 | currency:'USD'}}</span>
-          </div>
-        </div>
-      </mat-card-content>
+  <mat-card class="card">
+    <mat-card-header class="card-header">
+      <mat-card-title>{{item.name}}</mat-card-title>
+      <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
+    </mat-card-header>
+  
+    <img  class="mx-auto d-block text-center" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="{{item.name}}">
+    <mat-card-content class="card-content">
+      <p>Hier kommt die Beschreibung rein von jedem einzelnen Teil</p>
+      <p>Quantity: {{item.quantity}}</p>
+      <p>Expires on: {{item.expiryDate | date}}</p>
+      <mat-chip-listbox>
+        <mat-chip-option>Milch</mat-chip-option>
+        <mat-chip-option>Eiweis</mat-chip-option>
+        <mat-chip-option color="accent" selected>Protein</mat-chip-option>
+        <mat-chip-option color="warn">Laktose</mat-chip-option>
+      </mat-chip-listbox>
+    </mat-card-content>
+    <mat-card-footer class="card-footer">
       <mat-card-actions>
-        <button mat-raised-button color="primary" routerLink="/edit/{{item.id}}">Edit</button>
-        <button mat-raised-button color="accent" >Delete</button>
+
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Anzahl
+              </mat-panel-title>
+              <mat-panel-description>
+                Gebe die Anzahl ein
+                <mat-icon>looks_one</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field appearance="fill">
+              <mat-label>Anzahl</mat-label>
+              <input matInput type="number" min="1">
+            </mat-form-field>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Ablaufdatum
+              </mat-panel-title>
+              <mat-panel-description>
+                Gebe das Ablaufdatum ein
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field appearance="fill">
+              <mat-label>Ablaufdatum</mat-label>
+              <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+            </mat-form-field>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Produktdetails
+              </mat-panel-title>
+              <mat-panel-description>
+                Gebe die Produktdetails ein
+                <mat-icon>view_list</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field appearance="fill">
+              <mat-label>Produktname</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Notizen</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill" floatLabel="always">
+              <mat-label>Amount</mat-label>
+              <input matInput type="number" class="example-right-align" placeholder="0">
+              <span matTextPrefix>€&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+              Nährwertangabe
+              </mat-panel-title>
+              <mat-panel-description>
+                Gebe die Nährwerte ein
+                <mat-icon>shopping_basket</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field appearance="fill">
+              <mat-label>Kalorien</mat-label>
+              <input matInput type="number" min="1">
+              <span matTextSuffix>kcal</span>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Zucker</mat-label>
+              <input matInput type="number" min="1">
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Fett</mat-label>
+              <input matInput type="number" min="1">
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Eiweis</mat-label>
+              <input matInput type="number" min="1">
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Kohlenhydrate</mat-label>
+              <input matInput type="number" min="1">
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+
       </mat-card-actions>
-    </mat-card>
-    <button (click)="openSnackBar('Hello World', 'Dismiss')">Show Snackbar</button>
-
-  </div>
-
-  </mat-tab>
-  <mat-tab label="Second">
-
-    <div class="tab-content-center">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-
-     </div>
-    
-  </mat-tab>
-  <mat-tab label="Third"> contetn3
-    
-
-  </mat-tab>
-</mat-tab-group>
+    </mat-card-footer>
+  </mat-card>
 </div>
  
  

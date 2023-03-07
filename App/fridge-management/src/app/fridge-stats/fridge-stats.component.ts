@@ -24,12 +24,20 @@ export class FridgeStatsComponent implements OnInit {
   minQuantity: number = 0;
   maxQuantity: number = 0;
 
+  mappedCategory: any[] = [];
+  counter: number = 0;
+  labels: string[] = []
+  data: number[] = [];
+
+  
+
   constructor(private fridgeService: FridgeService) { }
 
   ngOnInit(): void {
+    this.fridge.push({capacity: 150});
     this.fridgeItems = this.fridgeService.getFridgeItems();
     this.totalItems = this.fridgeItems.length;
-    this.totalCapacity = this.fridge.reduce((total, item) => total + item.capacity, 0);
+    this.totalCapacity = this.fridge[0].capacity
     this.totalUsedCapacity = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
     this.totalFreeCapacity = this.totalCapacity - this.totalUsedCapacity;
 
@@ -39,8 +47,27 @@ export class FridgeStatsComponent implements OnInit {
     this.minQuantity = Math.min(...this.fridgeItems.map(item => item.quantity));
     this.maxQuantity = Math.max(...this.fridgeItems.map(item => item.quantity));
 
+   
+    const filteredItems = this.fridgeItems.filter(item => item.category === this.fridgeItems[0].category);
+
+    for (let index = 0; index < this.fridgeService.categories.length; index++) {
+      var filter = this.fridgeItems.filter(item => item.category === this.fridgeService.categories[index]);
+      this.mappedCategory.push({name: this.fridgeService.categories[index], quantity: filter.length})
+    }
+    console.log(this.mappedCategory)
+
+    this.mappedCategory.forEach(element => {
+      this.labels.push(element.name)
+    });
+
+    this.mappedCategory.forEach(element => {
+      this.data.push(element.quantity)
+    });
+
     this.createPieChart();
     this.createCategoryChart();
+
+
   }
 
   createPieChart() {
@@ -48,11 +75,11 @@ export class FridgeStatsComponent implements OnInit {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['Total Items', 'Total Capacity', 'Total Used Capacity','Total Free Capacity',
-								 'Average Quantity', 'Min Quantity', 'Max Quantity'], 
+        labels: ['Gesamtinhalt', 'Gesamtkapazität', 'Genutzte Kapazität','Freie Kapazität',
+								 'Durchschnittliche Anzahl', 'Minimale Anzahl', 'Maximale Anzahl'], 
 	       datasets: [
           {
-            label: "Items",
+            label: "Anzahl",
             data: [this.totalItems,  this.totalCapacity,  this.totalUsedCapacity , this.totalFreeCapacity , this.avgQuantity,
               this.minQuantity, this.maxQuantity],
             backgroundColor: 'blue'
@@ -73,13 +100,11 @@ export class FridgeStatsComponent implements OnInit {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['Total Items', 'Total Capacity', 'Total Used Capacity','Total Free Capacity',
-								 'Average Quantity', 'Min Quantity', 'Max Quantity'], 
+        labels: this.labels, 
 	       datasets: [
           {
-            label: "Items",
-            data: [this.totalItems,  this.totalCapacity,  this.totalUsedCapacity , this.totalFreeCapacity , this.avgQuantity,
-              this.minQuantity, this.maxQuantity],
+            label: "Anzahl",
+            data: this.data,
             backgroundColor: 'blue'
           },
         

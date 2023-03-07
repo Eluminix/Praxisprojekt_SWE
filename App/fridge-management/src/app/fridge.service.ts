@@ -11,6 +11,8 @@ import { FridgeItem } from './fridge-item.model';
 })
 export class FridgeService {
 
+ 
+
   item: any;
 
  
@@ -37,6 +39,8 @@ export class FridgeService {
     { id: 11, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" },
   ];
 
+  fridgeItems$: Observable<FridgeItem[]> = of(this.fridgeItems);
+
   categories: string[] = ['Milchprodukte','Eier', 'Gemüse', 'Obst', 'Fleisch', 'Fisch', 'Getränke', 'Teigwaren','Soßen & Dressing'];
   
 
@@ -58,7 +62,7 @@ export class FridgeService {
 
    // Get fridge items with low quantity
    getLowQuantityItems(): FridgeItem[] {
-    const lowQuantityItems = this.fridgeItems.filter(item => item.quantity < 5);
+    const lowQuantityItems = this.fridgeItems.filter(item => item.quantity < 2);
     return lowQuantityItems;
   }
 
@@ -75,11 +79,16 @@ export class FridgeService {
   }
 
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
+ isLowOnQuantity(item: FridgeItem): boolean {
+    const minQuantity = 2; // hier können Sie die Mindestmenge festlegen
+    return item.quantity < minQuantity;
   }
+   getDaysUntilExpiration(item: FridgeItem): number {
+    const expiryDate = new Date(item.expiryDate);
+    const today = new Date();
+    const timeDiff = expiryDate.getTime() - today.getTime();
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return daysDiff;
+  }
+
 }
