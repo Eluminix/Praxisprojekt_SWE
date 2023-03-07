@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>Fridge Items</h1>
+  <h1>Kühlschrankinhalt</h1>
 </div>
 <div class="add">
   <button mat-fab color="primary" (click)="openDialog()">
@@ -7,8 +7,17 @@
   </button>
 </div>
 
-<mat-grid-list cols="3" rowHeight="350px">
-  <mat-grid-tile *ngFor="let item of fridgeItems">
+
+
+
+<mat-grid-list cols="1">
+  <div *ngFor="let category of categories" >
+   
+ <h2 class="categoryHeader">{{category}}</h2>
+
+ <mat-grid-list cols="3" rowHeight="350px">
+  <div *ngFor="let item of fridgeItems">
+  <mat-grid-tile *ngIf="item.category === category">
     <mat-card class="card">
       <mat-card-header class="card-header">
         <mat-card-title>{{item.name}}</mat-card-title>
@@ -30,6 +39,11 @@
       </mat-card-footer>
     </mat-card>
   </mat-grid-tile>
+   </div>
+
+</mat-grid-list>
+  </div>
+ 
 </mat-grid-list>
 
 
