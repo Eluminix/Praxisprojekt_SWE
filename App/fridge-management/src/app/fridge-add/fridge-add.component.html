@@ -1,8 +1,35 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Inhalt hinzufügen</h2>
 <mat-dialog-content class="mat-typography">
- ADDING NEW ITEM
+  <mat-form-field>
+    <input matInput [(ngModel)]="name" placeholder="Name">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="quantity" placeholder="Anzahl">
+  </mat-form-field><br>
+  <mat-form-field appearance="fill">
+    <mat-label>Wähle ein Datum</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Kategorie</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let cat of categories">
+        {{cat}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="category" placeholder="Kategorie">
+  </mat-form-field>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-button mat-dialog-close>Abbrechen</button>
+  <button mat-button [mat-dialog-close]="{name: name, quantity: quantity,date: date, category: category}" cdkFocusInitial>Hinzufügen</button>
 </mat-dialog-actions>

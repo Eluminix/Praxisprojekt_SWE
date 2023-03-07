@@ -7,6 +7,7 @@ import { FridgeAddComponent } from '../fridge-add/fridge-add.component';
 
 
 
+
 @Component({
   selector: 'app-fridge-list',
   templateUrl: './fridge-list.component.html',
@@ -14,8 +15,10 @@ import { FridgeAddComponent } from '../fridge-add/fridge-add.component';
 })
 export class FridgeListComponent implements OnInit {
 
-
+  newFridgeItem: FridgeItem = { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" };
+  newItemId: number = 0;
   displayedColumns: string[] = ['name', 'quantity', 'expiryDate'];
+  categories: string[] = ['Milchprodukte','Eier', 'Gemüse', 'Obst', 'Fleisch', 'Fisch', 'Getränke', 'Teigwaren','Soßen & Dressing'];
   dataSource: MatTableDataSource<FridgeItem>  = new MatTableDataSource<FridgeItem>();
   
   fridgeItems: FridgeItem[] = [];
@@ -26,6 +29,7 @@ export class FridgeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFridgeItems();
+   
   }
 
 
@@ -44,13 +48,23 @@ export class FridgeListComponent implements OnInit {
     this.selectedItem = item;
   }
 
- delete(item:FridgeItem): void {
-  console.log(item)
-  this.fridgeItems.splice(item.id, 1);
-  console.log(this.fridgeItems)
+ delete(deleteItem:FridgeItem): void {
+  const index = this.fridgeItems.findIndex(item => item.id === deleteItem.id);
+   if (index !== -1) {
+  this.fridgeItems.splice(index, 1);
+    }
  }
 
+addItem(item:any) {
+  console.log(item.name)
+ 
+  this.newItemId = this.fridgeItems.length + 1;
+  this.newFridgeItem = {id: this.newItemId, name: item.name, quantity: item.quantity, expiryDate: item.date, category: item.category };
+  console.log(this.newFridgeItem)
+  this.fridgeItems.push(this.newFridgeItem);
+  console.log(this.fridgeItems);
 
+}
 
 
 
@@ -58,7 +72,8 @@ export class FridgeListComponent implements OnInit {
  openDialog() {  const dialogRef = this.dialog.open(FridgeAddComponent);
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
+  //  console.log(result);
+    this.addItem(result);
   });
 }
 

@@ -24,17 +24,21 @@ export class FridgeService {
 
  
   private fridgeItems: FridgeItem[] = [
-    { id: 1, name: 'Milk', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "food" },
-    { id: 2, name: 'Eggs', quantity: 12, expiryDate: new Date(2023, 2, 1), category: "food" },
-    { id: 3, name: 'Bread', quantity: 1, expiryDate: new Date(2023, 4, 5), category: "food" },
-    { id: 4, name: 'Sahne', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "food"},
-    { id: 5, name: 'Banane', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "food"},
-    { id: 6, name: 'Gurke', quantity: 2, expiryDate: new Date(2023, 4, 1) , category: "food"},
-    { id: 7, name: 'Tomaten', quantity: 12, expiryDate: new Date(2023,4, 10) , category: "food"},
-    { id: 8, name: 'Joghurt', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "food"},
-    { id: 9, name: 'Fleisch', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "food"},
-    { id: 10, name: 'Wurst', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "food"}
+    { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" },
+    { id: 2, name: 'Eier', quantity: 12, expiryDate: new Date(2023, 2, 1), category: "Eier" },
+    { id: 3, name: 'Brot', quantity: 1, expiryDate: new Date(2023, 4, 5), category: "Teigwaren" },
+    { id: 4, name: 'Sahne', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Milchprodukte"},
+    { id: 5, name: 'Banane', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Obst"},
+    { id: 6, name: 'Gurke', quantity: 2, expiryDate: new Date(2023, 4, 1) , category: "Gemüse"},
+    { id: 7, name: 'Tomaten', quantity: 12, expiryDate: new Date(2023,4, 10) , category: "Gemüse"},
+    { id: 8, name: 'Joghurt', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Milchprodukte"},
+    { id: 9, name: 'Steak', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Fleisch"},
+    { id: 10, name: 'Salami', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Fleisch"},
+    { id: 11, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" },
   ];
+
+  categories: string[] = ['Milchprodukte','Eier', 'Gemüse', 'Obst', 'Fleisch', 'Fisch', 'Getränke', 'Teigwaren','Soßen & Dressing'];
+  
 
   getFridgeItems() {
     return this.fridgeItems;
@@ -49,6 +53,8 @@ export class FridgeService {
     console.log(this.item)
     return this.item
   }
+
+ 
 
    // Get fridge items with low quantity
    getLowQuantityItems(): FridgeItem[] {

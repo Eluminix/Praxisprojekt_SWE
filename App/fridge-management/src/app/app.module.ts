@@ -36,6 +36,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FridgeFooterComponent } from './fridge-footer/fridge-footer.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -77,7 +80,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatSnackBarModule,
     MatSidenavModule,
     MatMenuModule,
-    LayoutModule
+    LayoutModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
     
     
   ],
