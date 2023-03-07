@@ -37,3 +37,13 @@ $fridge-management-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-mdc-snack-bar-container {
+  &.warn-snackbar {
+    --mdc-snackbar-container-color: rgb(133, 2, 2);
+    --mat-mdc-snack-bar-button-color: #ffb5b5;
+    --mdc-snackbar-supporting-text-color: #ffffff;
+    
+  }
+}

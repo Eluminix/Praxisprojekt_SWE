@@ -1,10 +1,12 @@
 <h2 mat-dialog-title>Inhalt hinzufügen</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
-    <input matInput [(ngModel)]="name" placeholder="Name">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name">
   </mat-form-field><br>
   <mat-form-field>
-    <input matInput [(ngModel)]="quantity" placeholder="Anzahl">
+    <mat-label>Anzahl</mat-label>
+    <input matInput [(ngModel)]="quantity"  type="number" min="1">
   </mat-form-field><br>
   <mat-form-field appearance="fill">
     <mat-label>Wähle ein Datum</mat-label>
@@ -17,16 +19,14 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Kategorie</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let cat of categories">
+    <mat-select [(ngModel)]="category">
+      <mat-option *ngFor="let cat of categories" [value]="cat" >
         {{cat}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [(ngModel)]="category" placeholder="Kategorie">
-  </mat-form-field>
+
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">

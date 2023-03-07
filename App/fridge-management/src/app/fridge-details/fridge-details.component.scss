@@ -1,8 +1,81 @@
-.tab-content-center {
-    display: flex;
-    justify-content: center;
-  }
+img {
+  height:50%;
+  width: 50%;
+}
 
-  .container {
-    height:100vh;
-  }
+.card {
+  background: linear-gradient(to top, #ffefba, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  
+}
+
+.card-header {
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  background-color: #ffefba;
+}
+
+.card-content {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.card-footer {
+}
+
+.card-footer-text {
+  color: #999;
+}
+
+.card-footer-quantity {
+  font-weight: bold;
+}
+
+.card-footer-expiry {
+  color: #f00;
+  font-weight: bold;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+.example-headers-align {
+  width: 100%
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+
+
+  

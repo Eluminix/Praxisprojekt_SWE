@@ -39,6 +39,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import {MatSelectModule} from '@angular/material/select';
     LayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatChipsModule
     
     
   ],
