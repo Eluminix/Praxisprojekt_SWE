@@ -1,13 +1,68 @@
- <h1>Shopping List</h1>
+ <h1>Shoppingliste</h1>
  <div class="container">
   
-    <h2>Low Quantity Items:</h2>
-    <ul>
-      <li *ngFor="let item of lowQuantityItems">{{ item.name }} ({{ item.quantity }})</li>
-    </ul>
+    <h2>Artikel in geringer Menge:</h2>
+    <br>
+    <button mat-raised-button (click)="openDialog()" class="demo-button">
+      Eintrag hinzufügen
+    </button>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item">{{item.name}}</td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Anzahl aktuell</th>
+        <td mat-cell *matCellDef="let item">{{item.quantity}}</td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Aktion</th>
+        <td mat-cell *matCellDef="let item">
+          <div class="demo-button-container">
+            <mat-icon (click)="delete(item)">delete</mat-icon>
+          </div>
+        </td>
+      </ng-container>
+    
+     
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   
-    <h2>Soon to Expire Items:</h2>
-    <ul>
-      <li *ngFor="let item of soonToExpireItems">{{ item.name }} ({{ item.expiryDate | date:'medium' }})</li>
-    </ul>
+    <br>
+    <h2>Verfallende Artikel:</h2>
+    <br>
+    
+    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8 demo-table">
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item">{{item.name}}</td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Anzahl</th>
+        <td mat-cell *matCellDef="let item">{{item.quantity}}</td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Verfallsdatum</th>
+        <td mat-cell *matCellDef="let item">{{item.expiryDate}}</td>
+      </ng-container>
+    
+     
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
+
+   
