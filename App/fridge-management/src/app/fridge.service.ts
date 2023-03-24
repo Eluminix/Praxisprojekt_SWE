@@ -43,6 +43,11 @@ export class FridgeService {
 
   categories: string[] = ['Milchprodukte','Eier', 'Gemüse', 'Obst', 'Fleisch', 'Fisch', 'Getränke', 'Teigwaren','Soßen & Dressing'];
   
+  fridgeUnits: string[] = ['Seitenfach', 'Gefrierfach', 'Hauptfach'];
+  
+  fridgeUnits$: Observable<string[]> = of(this.fridgeUnits);
+
+  fridgeCapacity: number = 0;
 
   getFridgeItems() {
     return this.fridgeItems;

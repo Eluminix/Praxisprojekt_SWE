@@ -1,38 +1,89 @@
 <div class="header">
     <h1>Profil</h1>
-<p>Hier kann das Profil angepasst werden usw</p>
+    <p>Hier können Sie ihr Profil anpassen. Die Anpassung erlaubt es ihnen Einstellungen zu ihrem Kühlschrank oder ihrem Profil durchzuführen</p>
 </div>
 
+<div class="settings">
+<mat-card class="card">
+  <mat-card-content>
+
+  <div class="settingItem">
+  <h2>Messsystem</h2>
+  <mat-radio-group [(ngModel)]="measurementSetting">
+    <mat-radio-button color="primary" value="metric">Metrisch</mat-radio-button><br>
+    <mat-radio-button color="primary" value="imperial">Imperial</mat-radio-button>
+  </mat-radio-group>
+</div>
+<div class="settingItem">
+  <h2>Spracheinstellung</h2>
+  <mat-radio-group [(ngModel)]="languageSetting">
+    <mat-radio-button color="primary" value="deutsch">Deutsch</mat-radio-button><br>
+    <mat-radio-button color="primary" value="english">Englisch</mat-radio-button>
+  </mat-radio-group>
+ 
+  </div>
+  <div class="settingItem">
+  <h2>Lokalisierung</h2>
+  <mat-radio-group [(ngModel)]="localizationSetting">
+    <mat-radio-button color="primary" value="eur">Euro</mat-radio-button><br>
+    <mat-radio-button color="primary" value="usd">USD</mat-radio-button>
+  </mat-radio-group>
+ 
+  </div>
+  <mat-divider></mat-divider>
+  <div class="appSettings">
+  <h2>App & Benarichtigungseinstellung</h2>
+  <div class="slider">
+  Auto-Add Gelöschte Artikel zur Shoppingliste<mat-slide-toggle color="primary" [(ngModel)]="autoAddSetting"></mat-slide-toggle>
+  Alarm für abgelaufene Produkte<mat-slide-toggle color="primary"  [(ngModel)]="alertSetting"></mat-slide-toggle>
+</div>
+
+</div>
+<mat-divider></mat-divider>
+
+  <div class="fridge">
+<h2>Kühlschrankeinstellungen</h2>
+<mat-form-field appearance="fill">
+  <mat-label>Kapazität</mat-label>
+  <input matInput type="number" min="1" [value]="capacity" [(ngModel)]="capacity">
+</mat-form-field>
+
+
+<mat-form-field appearance="fill">
+  
+ <mat-label>Übersicht Fächer</mat-label>
+ <mat-select>
+ <mat-option *ngFor="let unit of units" [value]="unit">{{ unit }}<mat-icon (click)="deleteUnit(unit)">delete</mat-icon></mat-option>
+</mat-select>
+</mat-form-field>
+<button mat-mini-fab class="addButton" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>
+
+</div>
+<mat-divider></mat-divider>
 <div class="fridge">
-<h2>Fridge</h2>
-
-<p>Form mit Anpassungen für Fridge Einstellungen, wie Capacity, Aufteilungen: Gefrierfach, Seitenfach usw</p>
+<h2>Nutzereinstellungen</h2>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="user.name">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="user.email">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="user.password">
+  </mat-form-field>
 </div>
+</mat-card-content>
 
-<div class="user">
-<h2>User</h2>
- <mat-card class="card">
-      <mat-card-content>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="user.name">
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="user.email">
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput type="password" [(ngModel)]="user.password">
-        </mat-form-field>
-      </mat-card-content>
-      
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="updateProfile()">Save</button>
-      </mat-card-actions>
-    </mat-card>
+<mat-card-actions>
+  <button mat-button class="addButton" (click)="updateProfile()" cdkFocusInitial>Änderungen speichern</button>
+</mat-card-actions>
 
-
+</mat-card>
 </div>

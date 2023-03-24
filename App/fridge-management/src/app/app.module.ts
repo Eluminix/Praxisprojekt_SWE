@@ -36,11 +36,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FridgeFooterComponent } from './fridge-footer/fridge-footer.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule, MatSingleDateSelectionModel} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FridgeAddUnitComponent } from './fridge-add-unit/fridge-add-unit.component';
 
 
 @NgModule({
@@ -58,6 +62,7 @@ import {MatChipsModule} from '@angular/material/chips';
     FridgeNavigationComponent,
     FridgeProfileComponent,
     FridgeFooterComponent,
+    FridgeAddUnitComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,11 @@ import {MatChipsModule} from '@angular/material/chips';
     MatNativeDateModule,
     MatSelectModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSlideToggleModule
+    
     
     
   ],

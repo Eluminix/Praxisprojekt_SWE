@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Kühlschrankfach hinzufügen</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="unit">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Schließen</button>
+  <button mat-button [mat-dialog-close]="unit" cdkFocusInitial>Hinzufügen</button>
+</div>
