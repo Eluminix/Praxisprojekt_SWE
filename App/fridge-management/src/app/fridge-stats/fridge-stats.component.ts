@@ -82,7 +82,7 @@ export class FridgeStatsComponent implements OnInit {
             label: "Anzahl",
             data: [this.totalItems,  this.totalCapacity,  this.totalUsedCapacity , this.totalFreeCapacity , this.avgQuantity,
               this.minQuantity, this.maxQuantity],
-            backgroundColor: 'blue'
+            backgroundColor: '#134E5E'
           },
         
         ]
@@ -90,6 +90,7 @@ export class FridgeStatsComponent implements OnInit {
       options: {
         aspectRatio:2
       }
+      
       
     });
   }
@@ -105,7 +106,7 @@ export class FridgeStatsComponent implements OnInit {
           {
             label: "Anzahl",
             data: this.data,
-            backgroundColor: 'blue'
+            backgroundColor: '#134E5E'
           },
         
         ]

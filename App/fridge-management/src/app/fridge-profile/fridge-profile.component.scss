@@ -2,13 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 32px;
+    margin-top:50px;
+    margin-bottom: 50px;
   }
   
   .card {
-    max-width: 600px;
+    max-width: 900px;
     width: 100%;
     margin-top: 16px;
+    background: linear-gradient(to right, #efefbb, #d4d3dd);
+    
   }
   
   .mat-form-field {
@@ -16,16 +19,77 @@
     margin-bottom: 16px;
   }
   
-  .mat-card-actions {
-    display: flex;
-    justify-content: space-between;
-  }
+  
 
   .fridge{
-    margin-bottom: 200px;
+    margin-bottom: 50px;
+    margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
   }
 
   .header {
-    margin-bottom: 200px;
+    margin-bottom: 50px
   }
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+ 
+ 
+}
   
+.settingItem {
+  margin-bottom: 50px;
+
+}
+
+.appSettings{
+  margin-bottom: 50px;
+  margin-top:50px;
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+}
+
+.addButton {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color:white !important;
+}
+
+
+.mat-mdc-radio-button.mat-primary {
+  --mdc-radio-disabled-selected-icon-color: #000;
+  --mdc-radio-disabled-unselected-icon-color: #000;
+  --mdc-radio-unselected-focus-icon-color: #212121;
+  --mdc-radio-unselected-hover-icon-color: #212121;
+  --mdc-radio-unselected-icon-color: rgba(0, 0, 0, 0.54);
+  --mdc-radio-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+  --mdc-radio-selected-focus-icon-color: #2c5364;
+  --mdc-radio-selected-hover-icon-color: #2c5364;
+  --mdc-radio-selected-icon-color: #2c5364;
+  --mdc-radio-selected-pressed-icon-color: #2c5364;
+  --mat-mdc-radio-ripple-color: #000;
+  --mat-mdc-radio-checked-ripple-color: #2c5364;
+}
+
+
+.mat-mdc-slide-toggle.mat-primary {
+  --mdc-switch-selected-focus-state-layer-color: #2c5364;
+  --mdc-switch-selected-handle-color: #2c5364;
+  --mdc-switch-selected-hover-state-layer-color: #2c5364;
+  --mdc-switch-selected-pressed-state-layer-color: #2c5364;
+  --mdc-switch-selected-focus-handle-color: #2c5364;
+  --mdc-switch-selected-hover-handle-color: #2c5364;
+  --mdc-switch-selected-pressed-handle-color: #2c5364;
+  --mdc-switch-selected-focus-track-color: #2c5364;
+  --mdc-switch-selected-hover-track-color: #2c5364
+  --mdc-switch-selected-pressed-track-color: #2c5364;
+  --mdc-switch-selected-track-color: #2c5364;
+}

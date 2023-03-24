@@ -47,3 +47,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
   }
 }
+
+.mat-mdc-snack-bar-container {
+  &.saving-snackbar {
+    --mdc-snackbar-container-color: rgb(1, 56, 26);
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: #ffffff;
+    
+  }
+}
+
+
