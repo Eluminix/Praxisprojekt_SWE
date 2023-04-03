@@ -2,8 +2,7 @@
 <div class="imageContainer">
     <img src="/assets/images/2.jpg" alt="image">
     <div class="centeredText">
-        "If your looking for a fridge management tool,<br>
-        your in the right place"
+      "Die Software für deinen Kühlschrank"
     </div>
 </div>
 
@@ -12,9 +11,10 @@
    
     <mat-grid-tile [colspan]=1 [rowspan]=3>
         <div class="content">
-            <h1>Your own Fridge Management App</h1>
-            <p>The App will help you to manage your Fridge Items. Add, Edit or Delete Items. It will
-                also create a Shopinglist automatically if the items are going to expire or the quantity is low!
+            <h1>Deine eigene Kühlschrankverwaltungssoftware</h1>
+            <p>Die Software vereinfacht die Verwaltung deiner Kühlschrankartikel. Artikel können hinzugefügt,
+               bearbeitet oder gelöscht werden. Eine Einkaufsliste wird automatisch erzeugt, sobald die Artikel ablaufen oder 
+               ihre Menge zu gering wird.
             </p>
         </div>
     </mat-grid-tile>
@@ -25,11 +25,11 @@
 
     <mat-grid-tile [colspan]=1 [rowspan]=1>
         <div class="content">
-             <h1>Fridge Item List</h1>
-             <p>Here you can see your Items in the Fridge</p> 
+             <h1>Artikelliste</h1>
+             <p>Hier kannst du deine Kühlschrankartikel sehen</p> 
         <button mat-fab extended class="linkButton" routerLink="/fridge/list">
            <mat-icon>fastfood</mat-icon>
-           Items
+           Artikel
          </button>
             </div>
 </mat-grid-tile>
@@ -38,11 +38,11 @@
 
 <mat-grid-tile [colspan]=1 [rowspan]=1>
     <div class="content">
-    <h1>Fridge Shoppinglist</h1>
-    <p>Here you can see the Items which are expiring or with low quantity</p>
+    <h1>Einkaufsliste</h1>
+    <p>Hier kannst du deine Einkaufsliste sehen</p>
     <button mat-fab extended class="linkButton" style="text-align: center;" routerLink="/fridge/shoppinglist">
        <mat-icon>shopping_cart</mat-icon>
-       Shoppinglist
+       Einkaufsliste
      </button>
     </div>
 </mat-grid-tile>
@@ -51,11 +51,11 @@
 
 <mat-grid-tile [colspan]=1 [rowspan]=1>
     <div class="content">  
-    <h1>Fridge Statistics</h1>
-    <p>Here you can see statistics about the Fridge Items</p>
+    <h1>Statistiken</h1>
+    <p>Hier kannst du Statistiken über deine Artikel sehen</p>
     <button mat-fab extended class="linkButton" style="text-align: center;" routerLink="/fridge/stats">
        <mat-icon>pie_chart</mat-icon>
-       Statistics
+       Statistiken
      </button> 
      </div>
 </mat-grid-tile>
@@ -67,20 +67,20 @@
 
 <div class="app">
     
-    <h1>Official WebApp</h1>
-    <h2>Now for your Smartphone</h2>
-       <p>You can donwload the progressive WebApp to use the Fridge Management on your Smartphone or Tablet</p>
+    <h1>Offizielle WebApp</h1>
+    <h2>Jetzt für dein Smartphone</h2>
+       <p>Du kannst die progressive WebApp downloaden, um deine Kühlschrankverwaltung auf dem Smartphone oder Tablet zu benutzen</p>
       
 
       <div class="stepper">
       <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Go to Options</ng-template>
-                <h1>OPTIONS</h1>
+            <ng-template matStepLabel>Klicke Einstellung</ng-template>
+                <h1>EINSTELLUNG</h1>
                 <mat-icon>settings</mat-icon>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext>Weiter</button>
             </div>
           </form>
         </mat-step>
@@ -90,16 +90,16 @@
             <h1>WebApp</h1>
             <mat-icon>settings</mat-icon>
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Zurück</button>
+              <button mat-button matStepperNext>Weiter</button>
             </div>
           </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
+          <p>Du bist jetzt fertig!</p>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperPrevious>Zurück</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
         </mat-step>

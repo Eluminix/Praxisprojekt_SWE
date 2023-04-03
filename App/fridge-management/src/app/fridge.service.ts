@@ -26,17 +26,17 @@ export class FridgeService {
 
  
   private fridgeItems: FridgeItem[] = [
-    { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" },
-    { id: 2, name: 'Eier', quantity: 12, expiryDate: new Date(2023, 2, 1), category: "Eier" },
-    { id: 3, name: 'Brot', quantity: 1, expiryDate: new Date(2023, 4, 5), category: "Teigwaren" },
-    { id: 4, name: 'Sahne', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Milchprodukte"},
-    { id: 5, name: 'Banane', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Obst"},
-    { id: 6, name: 'Gurke', quantity: 2, expiryDate: new Date(2023, 4, 1) , category: "Gemüse"},
-    { id: 7, name: 'Tomaten', quantity: 12, expiryDate: new Date(2023,4, 10) , category: "Gemüse"},
-    { id: 8, name: 'Joghurt', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Milchprodukte"},
-    { id: 9, name: 'Steak', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Fleisch"},
-    { id: 10, name: 'Salami', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Fleisch"},
-    { id: 11, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" },
+    { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 2, name: 'Eier', quantity: 12, expiryDate: new Date(2023, 2, 1), category: "Eier", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1  },
+    { id: 3, name: 'Brot', quantity: 1, expiryDate: new Date(2023, 4, 5), category: "Teigwaren" , notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 4, name: 'Sahne', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 5, name: 'Banane', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Obst", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 6, name: 'Gurke', quantity: 2, expiryDate: new Date(2023, 4, 1) , category: "Gemüse", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 7, name: 'Tomaten', quantity: 12, expiryDate: new Date(2023,4, 10) , category: "Gemüse", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 8, name: 'Joghurt', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 9, name: 'Steak', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Fleisch", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 10, name: 'Salami', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Fleisch", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
+    { id: 11, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" , notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
   ];
 
   fridgeItems$: Observable<FridgeItem[]> = of(this.fridgeItems);
@@ -95,5 +95,7 @@ export class FridgeService {
     const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return daysDiff;
   }
+
+
 
 }
