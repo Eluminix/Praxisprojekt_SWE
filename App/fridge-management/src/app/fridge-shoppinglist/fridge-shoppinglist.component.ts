@@ -17,7 +17,7 @@ export class FridgeShoppinglistComponent {
 
   lowQuantityItems: FridgeItem[] = [];
   soonToExpireItems: FridgeItem[] = [];
-  newFridgeItem: FridgeItem = { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" };
+  newFridgeItem: FridgeItem = { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1  };
   newItemId: number = 0;
   dataSource = new MatTableDataSource<FridgeItem>(this.fridgeService.getLowQuantityItems());
   
@@ -57,7 +57,7 @@ export class FridgeShoppinglistComponent {
     console.log(item.name)
    
     this.newItemId = this.lowQuantityItems.length + 1;
-    this.newFridgeItem = {id: this.newItemId, name: item.name, quantity: item.quantity, expiryDate: item.date, category: item.category };
+    this.newFridgeItem = {id: this.newItemId, name: item.name, quantity: item.quantity, expiryDate: item.date, category: item.category, notes: item.notes, amount: item.amount, kcal: item.kcal, sugar: item.sugar,fat: item.fat,protein: item.protein, carbo: item.carbo };
  
     this.lowQuantityItems.push(this.newFridgeItem);
     this.dataSource.data = this.lowQuantityItems;

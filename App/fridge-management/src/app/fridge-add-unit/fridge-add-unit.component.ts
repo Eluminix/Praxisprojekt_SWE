@@ -10,7 +10,5 @@ export class FridgeAddUnitComponent {
   unit: string = "";
   dialogRef: any;
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+ 
 }

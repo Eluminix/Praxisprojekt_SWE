@@ -62,8 +62,9 @@ export class FridgeProfileComponent {
     const dialogRef = this.dialog.open(FridgeAddUnitComponent);
 
   dialogRef.afterClosed().subscribe(result => {
-   
-    this.addItem(result);
+    if(result != "") {
+      this.addItem(result);
+    }
   });
   }
 

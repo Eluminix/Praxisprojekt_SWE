@@ -9,7 +9,6 @@ import { FridgeSearchComponent } from './fridge-search/fridge-search.component';
 import { FridgeAlertComponent } from './fridge-alert/fridge-alert.component';
 import { FridgeStatsComponent } from './fridge-stats/fridge-stats.component';
 import { FridgeAddComponent } from './fridge-add/fridge-add.component';
-import { FridgeEditComponent } from './fridge-edit/fridge-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -56,7 +55,6 @@ import { FridgeAddUnitComponent } from './fridge-add-unit/fridge-add-unit.compon
     FridgeAlertComponent,
     FridgeStatsComponent,
     FridgeAddComponent,
-    FridgeEditComponent,
     FridgeComponent,
     FridgeShoppinglistComponent,
     FridgeNavigationComponent,

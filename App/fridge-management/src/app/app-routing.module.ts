@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FridgeListComponent } from './fridge-list/fridge-list.component';
 import { FridgeDetailsComponent } from './fridge-details/fridge-details.component';
 import { FridgeAddComponent } from './fridge-add/fridge-add.component';
-import { FridgeEditComponent } from './fridge-edit/fridge-edit.component';
 import { FridgeStatsComponent } from './fridge-stats/fridge-stats.component';
 import { FridgeSearchComponent } from './fridge-search/fridge-search.component';
 import { FridgeComponent } from './fridge/fridge.component';
@@ -21,7 +20,6 @@ const routes: Routes = [
   { path: 'fridge/search', component: FridgeSearchComponent },
   { path: 'fridge/shoppinglist', component: FridgeShoppinglistComponent }, 
   { path: 'fridge/profile', component: FridgeProfileComponent },
-  { path: 'fridge/edit/:id', component: FridgeEditComponent },
 ];
 
 @NgModule({
