@@ -1,6 +1,6 @@
 
 <div class="imageContainer">
-    <img src="/assets/images/2.jpg" alt="image">
+    <img class="banner" src="/assets/images/2.jpg" alt="image">
     <div class="centeredText">
       "Die Software für deinen Kühlschrank"
     </div>
@@ -29,7 +29,7 @@
              <p>Hier kannst du deine Kühlschrankartikel sehen</p> 
         <button mat-fab extended class="linkButton" routerLink="/fridge/list">
            <mat-icon>fastfood</mat-icon>
-           Artikel
+          Artikel 
          </button>
             </div>
 </mat-grid-tile>
@@ -68,7 +68,7 @@
 <div class="app">
     
     <h1>Offizielle WebApp</h1>
-    <h2>Jetzt für dein Smartphone</h2>
+    <h2>Jetzt für dein Smartphone, Tablet und Desktop</h2>
        <p>Du kannst die progressive WebApp downloaden, um deine Kühlschrankverwaltung auf dem Smartphone oder Tablet zu benutzen</p>
       
 
@@ -76,19 +76,23 @@
       <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Klicke Einstellung</ng-template>
-                <h1>EINSTELLUNG</h1>
-                <mat-icon>settings</mat-icon>
+            <ng-template matStepLabel>Download</ng-template>
+                <h1>Downloade die WebApp</h1>
+                <img src="/assets/images/1.PNG" alt="image"><br><br>
+                <p>Klicke auf das Icon in der rotumrandeten Box und downloade die WebApp auf deinen Desktop!</p>
+                
             <div>
+            
               <button mat-button matStepperNext>Weiter</button>
             </div>
           </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Download WebApp</ng-template>
-            <h1>WebApp</h1>
-            <mat-icon>settings</mat-icon>
+            <ng-template matStepLabel>Klick & Go</ng-template>
+            <h1>Starte die WebApp</h1>
+            <img class="webApp" src="/assets/images/pwaApp.PNG" alt="image"><br><br>
+            <p>Klicke auf das Icon auf deinem Desktop und öffne deine persönliche Kühlschrankverwaltungssoftware!</p>
             <div>
               <button mat-button matStepperPrevious>Zurück</button>
               <button mat-button matStepperNext>Weiter</button>
@@ -96,8 +100,8 @@
           </form>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>Du bist jetzt fertig!</p>
+          <ng-template matStepLabel>Herzlichen Glückwunsch</ng-template>
+          <p>Du hast alle Schritte erfolgreich erledigt! Viel Spaß mit deiner WebApp!</p>
           <div>
             <button mat-button matStepperPrevious>Zurück</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

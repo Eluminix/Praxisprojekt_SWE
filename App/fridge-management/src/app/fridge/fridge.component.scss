@@ -12,12 +12,12 @@
 
  .app {
     background: linear-gradient(to right, rgb(189, 195, 199), rgb(44, 62, 80));
-    height: 600px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 40px;
+    
     //border-radius: 15px;
   }
 
@@ -26,7 +26,7 @@
     text-align: center;
   }
 
-img {
+.banner {
     width: 100%;
    // height: 70%;
    
@@ -48,10 +48,12 @@ img {
  
   .content {
     flex-direction: column;
+    z-index: 0;
 }
 
 .stepper {
     padding-top: 60px;
+    
 }
 
 
@@ -59,5 +61,11 @@ img {
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   color:white !important;
 }
+
+
+
+
+
+
 
   
