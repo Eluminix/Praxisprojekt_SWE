@@ -48,7 +48,7 @@
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Ablaufdatum</mat-label>
               <input matInput [(ngModel)]="dateValue" [matDatepicker]="picker" (focus)="picker.open()" readonly>
             </mat-form-field>
@@ -69,15 +69,15 @@
               <mat-label>Produktname</mat-label>
               <input matInput [(ngModel)]="nameValue" value="{{item.name}}">
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Notizen</mat-label>
               <textarea matInput [(ngModel)]="notesValue" value="{{item.notes}}"></textarea>
             </mat-form-field>
-            <mat-form-field appearance="fill" floatLabel="always">
+            <mat-form-field appearance="fill" floatLabel="always" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Betrag</mat-label>
               <input matInput [(ngModel)]="amountValue" type="number" class="example-right-align" placeholder="{{item.amount}}" >
               <span matTextPrefix>€&nbsp;</span>
-              <span matTextSuffix>.00</span>
+              
             </mat-form-field>
           </mat-expansion-panel>
 
@@ -91,29 +91,29 @@
                 <mat-icon>shopping_basket</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Kalorien</mat-label>
               <input matInput [(ngModel)]="kcalValue" type="number" min="1" value="{{item.kcal}}">
               <span matTextSuffix>kcal</span>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Zucker</mat-label>
               <input matInput [(ngModel)]="sugarValue" type="number" min="1" value="{{item.sugar}}">
               <span matTextSuffix>g</span>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Fett</mat-label>
               <input matInput [(ngModel)]="fatValue" type="number" min="1" value="{{item.fat}}">
               <span matTextSuffix>g</span>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Eiweis</mat-label>
               <input matInput [(ngModel)]="proteinValue" type="number" min="1" value="{{item.protein}}">
               <span matTextSuffix>g</span>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" (keydown)="updateFridgeItemDetailsWithEnter($event)">
               <mat-label>Kohlenhydrate</mat-label>
-              <input matInput [(ngModel)]="carboValue" type="number" min="1" value="{{item.carbo}}">
+              <input matInput [(ngModel)]="carbsValue" type="number" min="1" value="{{item.carbs}}">
               <span matTextSuffix>g</span>
             </mat-form-field>
           </mat-expansion-panel>

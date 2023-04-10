@@ -1,13 +1,20 @@
 <h2 mat-dialog-title>Artikel hinzufügen</h2>
-<mat-dialog-content class="mat-typography">
+<mat-divider></mat-divider>
+<mat-dialog-content class="dialogContent">
+  <mat-grid-list cols="2" rowHeight="80px" >
+   
+    <mat-grid-tile [colspan]=1 [rowspan]=6>
+   
+  <div class="group1">
+    <h3>Allgemein</h3>
   <mat-form-field>
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="name">
-  </mat-form-field><br>
+  </mat-form-field>
   <mat-form-field>
     <mat-label>Anzahl</mat-label>
     <input matInput [(ngModel)]="quantity"  type="number" min="1">
-  </mat-form-field><br>
+  </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Wähle ein Datum</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="date">
@@ -15,7 +22,7 @@
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-  <br><br>
+ 
 
   <mat-form-field appearance="fill">
     <mat-label>Kategorie</mat-label>
@@ -26,10 +33,57 @@
     </mat-select>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Notizen</mat-label>
+    <textarea matInput [(ngModel)]="notes" placeholder="Notizen"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Betrag</mat-label>
+    <input matInput [(ngModel)]="amount"  type="number" >
+    <span matTextPrefix>€&nbsp;</span>
+  </mat-form-field>
+</div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=1 [rowspan]=5>
+<div class="group2">
+  <h3>Nährwerte</h3>
+  <mat-form-field>
+    <mat-label>Kcal</mat-label>
+    <input matInput [(ngModel)]="kcal"  type="number" >
+    <span matTextSuffix>g</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Zucker</mat-label>
+    <input matInput [(ngModel)]="sugar"  type="number" >
+    <span matTextSuffix>g</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Fett</mat-label>
+    <input matInput [(ngModel)]="fat"  type="number" >
+    <span matTextSuffix>g</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Protein</mat-label>
+    <input matInput [(ngModel)]="protein"  type="number" >
+    <span matTextSuffix>g</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Kohlenhydrate</mat-label>
+    <input matInput [(ngModel)]="carbs"  type="number" >
+    <span matTextSuffix>g</span>
+  </mat-form-field>
 
 
+</div>
+</mat-grid-tile>
+</mat-grid-list>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Abbrechen</button>
-  <button mat-button [mat-dialog-close]="{name: name, quantity: quantity,date: date, category: category}" cdkFocusInitial>Hinzufügen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+  <button mat-button [mat-dialog-close]="{name: name, quantity: quantity,date: date, category: category, notes: notes, amount: amount, kcal: kcal, sugar: sugar,fat: fat,protein: protein, carbs: carbs}" cdkFocusInitial>Hinzufügen</button>
 </mat-dialog-actions>

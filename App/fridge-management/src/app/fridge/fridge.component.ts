@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {FormBuilder, Validators} from '@angular/forms';
+import { FridgeService } from '../fridge.service';
 
 
 
@@ -12,6 +13,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 })
 export class FridgeComponent {
  
+ 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -20,6 +22,8 @@ export class FridgeComponent {
   });
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) {
+    
+  }
 }
 

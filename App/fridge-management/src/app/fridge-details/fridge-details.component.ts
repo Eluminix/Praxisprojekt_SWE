@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FridgeDetailsComponent implements OnInit {
 
   itemId: number = 0;
-  item!: FridgeItem;
+  item: FridgeItem =  { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbs: 1 };
   img: string = "";
   description: string = "";
   chips: string[] = [];
@@ -25,7 +25,7 @@ export class FridgeDetailsComponent implements OnInit {
   sugarValue: number = 0;
   fatValue: number = 0;
   proteinValue: number = 0;
-  carboValue: number = 0;
+  carbsValue: number = 0;
 
   categoryImg: any[] = [
   {category: 'Milchprodukte', img: '/assets/images/milch.jpeg', description: 'Milch ist toll', chips: ['Milch', 'Vitamine', 'Protein', 'Laktose']}, 
@@ -46,28 +46,35 @@ export class FridgeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.itemId = Number(params!.get('id'));
-      this.item = this.fridgeService.getFridgeItemById(this.itemId);
+    //  this.item = this.fridgeService.getFridgeItemById(this.itemId);
+      this.fridgeService.getItemById(this.itemId).subscribe(item => {
+        this.item = item;
+         this.categoryImg.forEach(element => {
+          if (item.category == element.category) {
+            this.img = element.img;
+            this.description = element.description;
+            this.chips = element.chips;
+          }
+        });
+         this.quantityValue = item.quantity;
+    this.dateValue = item.expiryDate;
+    this.nameValue = item.name;
+    this.notesValue = item.notes;
+    this.amountValue = item.amount;
+    this.kcalValue = item.kcal;
+    this.sugarValue = item.sugar;
+    this.fatValue = item.fat;
+    this.proteinValue = item.protein;
+    this.carbsValue = item.carbs;
+      })
     });
-    this.categoryImg.forEach(element => {
-      if (this.item.category == element.category) {
-        this.img = element.img;
-        this.description = element.description;
-        this.chips = element.chips;
-      }
-    });
-    this.quantityValue = this.item.quantity;
-    this.dateValue = this.item.expiryDate;
-    this.nameValue = this.item.name;
-    this.notesValue = this.item.notes;
-    this.amountValue = this.item.amount;
-    this.kcalValue = this.item.kcal;
-    this.sugarValue = this.item.sugar;
-    this.fatValue = this.item.fat;
-    this.proteinValue = this.item.protein;
-    this.carboValue = this.item.carbo;
 
 
+   
+   
   }
+
+ 
 
   updateFridgeItem(item: FridgeItem): void {
     // Implement the update functionality here
@@ -96,7 +103,15 @@ export class FridgeDetailsComponent implements OnInit {
       this.item.sugar = this.sugarValue;
       this.item.fat = this.fatValue;
       this.item.protein = this.proteinValue;
-      this.item.carbo = this.carboValue;
+      this.item.carbs = this.carbsValue;
+      
+        this.fridgeService.updateItem(this.item).subscribe(() => {
+          
+         
+        });
+
+       
+      
     }
   }
 

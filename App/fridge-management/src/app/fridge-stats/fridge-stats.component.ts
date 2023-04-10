@@ -13,6 +13,7 @@ export class FridgeStatsComponent implements OnInit {
 
   public chart: any;
   public chartCategory: any;
+  profileData: any;
 
   fridge: Fridge[] = [];
   fridgeItems: FridgeItem[] = [];
@@ -34,21 +35,21 @@ export class FridgeStatsComponent implements OnInit {
   constructor(private fridgeService: FridgeService) { }
 
   ngOnInit(): void {
-    this.fridge.push({capacity: 150});
-    this.fridgeItems = this.fridgeService.getFridgeItems();
-    this.totalItems = this.fridgeItems.length;
-    this.totalCapacity = this.fridge[0].capacity
-    this.totalUsedCapacity = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
-    this.totalFreeCapacity = this.totalCapacity - this.totalUsedCapacity;
+    this.getProfileData();
+    this.fridgeService.getItemsData().subscribe((data: any) => {
+      this.fridgeItems = data;
+      this.totalItems = this.fridgeItems.length;
+     
+      this.totalUsedCapacity = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
+      this.totalFreeCapacity = this.totalCapacity - this.totalUsedCapacity;
+      
+  // Calculate average, minimum and maximum quantities of all items
+      const totalQuantities = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
+      this.avgQuantity = totalQuantities / this.totalItems;
+      this.minQuantity = Math.min(...this.fridgeItems.map(item => item.quantity));
+      this.maxQuantity = Math.max(...this.fridgeItems.map(item => item.quantity));
 
-    // Calculate average, minimum and maximum quantities of all items
-    const totalQuantities = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
-    this.avgQuantity = totalQuantities / this.totalItems;
-    this.minQuantity = Math.min(...this.fridgeItems.map(item => item.quantity));
-    this.maxQuantity = Math.max(...this.fridgeItems.map(item => item.quantity));
-
-   
-    const filteredItems = this.fridgeItems.filter(item => item.category === this.fridgeItems[0].category);
+ const filteredItems = this.fridgeItems.filter(item => item.category === this.fridgeItems[0].category);
 
     for (let index = 0; index < this.fridgeService.categories.length; index++) {
       var filter = this.fridgeItems.filter(item => item.category === this.fridgeService.categories[index]);
@@ -66,7 +67,10 @@ export class FridgeStatsComponent implements OnInit {
 
     this.createPieChart();
     this.createCategoryChart();
-
+    });
+  
+ //   this.fridgeItems = this.fridgeService.getFridgeItems();
+   
 
   }
 
@@ -117,5 +121,17 @@ export class FridgeStatsComponent implements OnInit {
       
     });
   }
+
+
+  getProfileData() {
+    this.fridgeService.getData().subscribe((data: any) => {
+      this.profileData = data;
+      this.totalCapacity = this.profileData.capacity;
+      
+    })  
+  }
+  
+
+
 
 }
