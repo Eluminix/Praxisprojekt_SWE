@@ -34,7 +34,7 @@
         <mat-card-actions>
           
           <mat-icon routerLink="detail/{{item.id}}">search</mat-icon>
-          <mat-icon (click)="delete(item)">delete</mat-icon>
+          <mat-icon (click)="deleteItem(item.id)">delete</mat-icon>
         </mat-card-actions>
       </mat-card-footer>
     </mat-card>

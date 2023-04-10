@@ -10,6 +10,6 @@ export interface FridgeItem {
     sugar: number;
     fat: number;
     protein: number;
-    carbo: number;
+    carbs: number;
   }
   

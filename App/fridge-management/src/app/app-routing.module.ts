@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
 
 import { FridgeListComponent } from './fridge-list/fridge-list.component';
 import { FridgeDetailsComponent } from './fridge-details/fridge-details.component';

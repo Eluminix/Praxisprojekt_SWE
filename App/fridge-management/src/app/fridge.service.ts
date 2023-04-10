@@ -15,29 +15,21 @@ export class FridgeService {
 
   item: any;
 
+  fridgeItem: FridgeItem =   { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbs: 1 };
+  fridgeItemList: FridgeItem[] = [];
+
  
  
-//  private fridgeUrl = 'api/fridgeItems';
  
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  
+
  
-  private fridgeItems: FridgeItem[] = [
-    { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 2, name: 'Eier', quantity: 12, expiryDate: new Date(2023, 2, 1), category: "Eier", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1  },
-    { id: 3, name: 'Brot', quantity: 1, expiryDate: new Date(2023, 4, 5), category: "Teigwaren" , notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 4, name: 'Sahne', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 5, name: 'Banane', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Obst", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 6, name: 'Gurke', quantity: 2, expiryDate: new Date(2023, 4, 1) , category: "Gemüse", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 7, name: 'Tomaten', quantity: 12, expiryDate: new Date(2023,4, 10) , category: "Gemüse", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 8, name: 'Joghurt', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 9, name: 'Steak', quantity: 12, expiryDate: new Date(2023, 4, 10) , category: "Fleisch", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 10, name: 'Salami', quantity: 1, expiryDate: new Date(2023, 4, 5) , category: "Fleisch", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-    { id: 11, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte" , notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbo: 1 },
-  ];
+  fridgeItems: FridgeItem[] = [];
 
   fridgeItems$: Observable<FridgeItem[]> = of(this.fridgeItems);
 
@@ -53,36 +45,6 @@ export class FridgeService {
     return this.fridgeItems;
   }
 
-  getFridgeItemById(itemId: number): FridgeItem {
-    this.fridgeItems.forEach(element => {
-      if (element.id == itemId) {
-          this.item = element
-      }
-    });
-    console.log(this.item)
-    return this.item
-  }
-
- 
-
-   // Get fridge items with low quantity
-   getLowQuantityItems(): FridgeItem[] {
-    const lowQuantityItems = this.fridgeItems.filter(item => item.quantity < 2);
-    return lowQuantityItems;
-  }
-
-  // Get fridge items that will expire soon
-  getSoonToExpireItems(): FridgeItem[] {
-    const soonToExpireItems = this.fridgeItems.filter(item => {
-      const today = new Date();
-      const expirationDate = new Date(item.expiryDate);
-      const timeDiff = expirationDate.getTime() - today.getTime();
-      const daysUntilExpiration = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      return daysUntilExpiration <= 3; // Show items that will expire in the next 3 days
-    });
-    return soonToExpireItems;
-  }
-
 
  isLowOnQuantity(item: FridgeItem): boolean {
     const minQuantity = 2; // hier können Sie die Mindestmenge festlegen
@@ -95,6 +57,106 @@ export class FridgeService {
     const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return daysDiff;
   }
+
+
+private dataurl = 'http://localhost:3000/data';
+private itemsurl = 'http://localhost:3000/items';
+private shoppinglisturl = 'http://localhost:3000/shoppinglist'
+
+  data: any;
+  itemsData: any;
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  // Profil
+  getData() {
+    return this.http.get(this.dataurl);
+  }
+
+  updateData(newData: any): Observable<any> {
+    return this.http.post(this.dataurl, newData);
+  }
+
+  deleteData(unit: any): Observable<any> {
+    const url = `${this.dataurl}/${unit}`;
+    return this.http.delete(url);
+  }
+
+
+
+// Artikelliste
+  getItemsData() {
+    return this.http.get(this.itemsurl);
+  }
+
+  
+
+
+  updateItemsData(newData: FridgeItem): Observable<any> {
+    return this.http.post(this.itemsurl, newData);
+  }
+
+
+  deleteItem(id: number): Observable<any> {
+    const url = `${this.itemsurl}/${id}`;
+    return this.http.delete(url);
+  }
+
+  
+
+ // Detail
+  getItemById(itemId: number): Observable<FridgeItem> {
+    return this.getItemsData().pipe(
+      map((data: any) => {
+        console.log(data);
+        this.fridgeItemList = data;
+        this.fridgeItemList.forEach(element => {
+          if (element.id === itemId) {
+            this.fridgeItem = element;
+          }
+        });
+        return this.fridgeItem;
+       })
+    );
+}
+
+updateItem(item: FridgeItem): Observable<any> {
+  return this.http.put(`${this.itemsurl}/${item.id}`, item);
+}
+
+// Shoppingliste
+
+getShoppinglistData() {
+  return this.http.get(this.shoppinglisturl);
+}
+updateShoppingList(newData: any): Observable<any> {
+  return this.http.post(this.shoppinglisturl, newData);
+}
+
+
+deleteShoppinglistItem(id: number): Observable<any> {
+  const url = `${this.shoppinglisturl}/${id}`;
+  return this.http.delete(url);
+}
+
+
+
+
+ 
+
+  
+
+   
+
+
+
+ 
+
+    
+  
+
 
 
 

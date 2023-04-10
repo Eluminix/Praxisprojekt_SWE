@@ -10,7 +10,10 @@ import { FridgeService } from '../fridge.service';
   styleUrls: ['./fridge-profile.component.scss']
 })
 export class FridgeProfileComponent {
-  user: any = {name: "Max", email:"Mustermann@gmx.de", password: "wjqehqkj"};
+  user: any;
+  username: string = "";
+  usermail: string = "";
+  userpassword: string = "";
   units: string[] = [];
   unit: string = "";
   capacity: number = 0;
@@ -19,8 +22,11 @@ export class FridgeProfileComponent {
   localizationSetting: string = "";
   autoAddSetting: boolean = true;
   alertSetting: boolean = true;
+  data: any;
 
-  constructor(private fridgeService: FridgeService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private fridgeService: FridgeService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+    
+   }
 
   
   openSnackBar() {
@@ -29,13 +35,67 @@ export class FridgeProfileComponent {
 
   ngOnInit() {
    // this.user = this.authService.getCurrentUser();
-   this.units = this.fridgeService.fridgeUnits;
-   this.capacity = this.fridgeService.fridgeCapacity = 150
+  
+   this.getData();
+
   }
 
+  
+
+ 
+  getData() {
+    this.fridgeService.getData().subscribe((data: any) => {
+      this.data = data;
+      this.units = this.data.units;
+      console.log(this.units)
+      this.capacity = this.data.capacity;
+      this.measurementSetting = this.data.measurementSetting;
+   this.languageSetting = this.data.languageSetting;
+  this.localizationSetting = this.data.localizationSetting;
+  this.autoAddSetting = this.data.autoAddSetting;
+  this.alertSetting = this.data.alertSetting;
+  this.username = this.data.username
+  this.usermail = this.data.usermail
+  this.userpassword = this.data.userpassword;
+  
+    });
+  }
+/*
+  {
+    "user": [{"name": "Max"}, {"email": "test@gmx.de"}, {"password": "wqeqw"}],
+    "units": ["Seitenfach", "Gefrierfach", "Hauptfach"],
+    "capacity": 150,
+  "measurementSetting": "metrisch",
+  "languageSetting": "deutsch",
+  "localizationSetting": "euro",
+  "autoAddSetting": true,
+  "alertSetting": true
+}
+*/
   updateProfile() {
+
+    const newData = { 
+      "username": this.username,
+      "usermail": this.usermail,
+      "userpassword": this.userpassword,
+      "units": this.units,
+    "capacity": this.capacity,
+   "measurementSetting": this.measurementSetting,
+   "languageSetting": this.languageSetting,
+  "localizationSetting": this.localizationSetting,
+  "autoAddSetting": this.autoAddSetting,
+  "alertSetting": this.alertSetting
+    };
+    this.fridgeService.updateData(newData).subscribe({
+      next: () => {
+        console.log('Daten erfolgreich aktualisiert.');
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
    console.log(this.capacity);
-   console.log(this.user.name);
+   console.log(this.username);
    console.log(this.localizationSetting);
    console.log(this.languageSetting);
    console.log(this.measurementSetting);
@@ -45,16 +105,17 @@ export class FridgeProfileComponent {
   }
 
   addItem(item:string) {
-    this.fridgeService.fridgeUnits.push(item);
+    this.units.push(item);
+    this.updateProfile();
   }
 
-  deleteUnit(deleteUnit:string) {
+  deleteUnit(unit :any) {
+    console.log(unit)
+    this.fridgeService.deleteData(unit).subscribe(() => {
+      this.getData();
+    });
+    location.reload();
     
-      const index = this.fridgeService.fridgeUnits.findIndex(item => item === deleteUnit);
-       if (index !== -1) {
-      this.fridgeService.fridgeUnits.splice(index, 1);
-        }
-     
   }
 
 
@@ -62,7 +123,7 @@ export class FridgeProfileComponent {
     const dialogRef = this.dialog.open(FridgeAddUnitComponent);
 
   dialogRef.afterClosed().subscribe(result => {
-    if(result != "") {
+    if(result != false) {
       this.addItem(result);
     }
   });

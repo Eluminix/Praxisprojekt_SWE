@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FridgeService } from '../fridge.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-fridge-add',
@@ -9,21 +10,38 @@ import { FridgeService } from '../fridge.service';
 })
 export class FridgeAddComponent implements OnInit {
   
+  
   name: string = "";
   quantity: number = 0;
   date: Date = new Date();
   category: string = "";
+  notes: string = "";
+  amount: number = 0;
+  kcal: number = 0;
+  sugar: number = 0;
+  fat: number = 0;
+  protein: number = 0;
+  carbs: number = 0;
   categories: string[] = [];
 
   
 
-  constructor(private fridgeService: FridgeService) { }
+  constructor(private fridgeService: FridgeService,public dialogRef: MatDialogRef<FridgeAddComponent>) { }
 
 
 
 ngOnInit(): void {
     this.categories = this.fridgeService.categories;
+    this.dialogRef.backdropClick().subscribe(() => {
+      this.cancel();
+    });
   }
 
+  cancel(): void {
+    this.dialogRef.close(false);
+  }
+
+
+  
 
 }
