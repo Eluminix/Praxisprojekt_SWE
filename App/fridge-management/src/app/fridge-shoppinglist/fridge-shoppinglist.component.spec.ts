@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FridgeShoppinglistComponent } from './fridge-shoppinglist.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+
 
 describe('FridgeShoppinglistComponent', () => {
   let component: FridgeShoppinglistComponent;
@@ -8,7 +12,9 @@ describe('FridgeShoppinglistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FridgeShoppinglistComponent ]
+      imports: [HttpClientModule, MatDialogModule, MatTableModule],
+      declarations: [ FridgeShoppinglistComponent ],
+     
     })
     .compileComponents();
 

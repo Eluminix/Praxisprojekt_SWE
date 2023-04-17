@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FridgeNavigationComponent } from './fridge-navigation.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { FridgeFooterComponent } from '../fridge-footer/fridge-footer.component';
 
 describe('FridgeNavigationComponent', () => {
   let component: FridgeNavigationComponent;
@@ -8,7 +15,11 @@ describe('FridgeNavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FridgeNavigationComponent ]
+      imports: [MatSidenavModule, BrowserAnimationsModule, MatToolbarModule, MatListModule, MatIconModule, RouterModule],
+      declarations: [ FridgeNavigationComponent, FridgeFooterComponent ],
+      providers: [
+        { provide: ActivatedRoute, useValue: {} }
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FridgeSearchComponent } from './fridge-search.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 describe('FridgeSearchComponent', () => {
   let component: FridgeSearchComponent;
@@ -8,6 +10,7 @@ describe('FridgeSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule, FormsModule],
       declarations: [ FridgeSearchComponent ]
     })
     .compileComponents();
