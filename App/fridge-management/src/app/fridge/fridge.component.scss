@@ -32,12 +32,20 @@
    
 }
   .centeredText {
+    width: 50%;
     position: absolute;
-    font-size: 30px;
     top: 50%;
-    left: 22%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+    font-size: 3vw;
+    margin: 0;
+    padding: 0;
+    
+    
+  
+    
   }
+
+  
 
 
   .overview {
@@ -47,9 +55,12 @@
 
  
   .content {
+    width: 100%;
     flex-direction: column;
     z-index: 0;
 }
+
+
 
 .stepper {
     padding-top: 60px;
