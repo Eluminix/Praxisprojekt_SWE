@@ -23,6 +23,7 @@ export class FridgeAddComponent implements OnInit {
   protein: number = 0;
   carbs: number = 0;
   categories: string[] = [];
+  backdropClick$: any;
 
   
 
@@ -32,9 +33,14 @@ export class FridgeAddComponent implements OnInit {
 
 ngOnInit(): void {
     this.categories = this.fridgeService.categories;
-    this.dialogRef.backdropClick().subscribe(() => {
+
+    this.backdropClick$ = this.dialogRef.backdropClick();
+  if (this.backdropClick$) {
+    this.backdropClick$.subscribe(() => {
       this.cancel();
     });
+  }
+
   }
 
   cancel(): void {

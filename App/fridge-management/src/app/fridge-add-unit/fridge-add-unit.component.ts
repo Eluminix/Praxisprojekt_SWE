@@ -15,9 +15,15 @@ export class FridgeAddUnitComponent {
 
  
   ngOnInit(): void {
-    this.dialogRef.backdropClick().subscribe(() => {
-      this.cancel();
-    });
+
+    const backdropClick$ = this.dialogRef.backdropClick();
+    if (backdropClick$) {
+      backdropClick$.subscribe(() => {
+        this.cancel();
+      });
+    }
+
+   
   }
 
   cancel(): void {
