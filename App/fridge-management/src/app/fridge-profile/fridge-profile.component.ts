@@ -114,8 +114,7 @@ export class FridgeProfileComponent {
     this.fridgeService.deleteData(unit).subscribe(() => {
       this.getData();
     });
-    location.reload();
-    
+    this.units = this.units.filter(item =>  item !== unit);  
   }
 
 
