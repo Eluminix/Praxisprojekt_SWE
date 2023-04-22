@@ -35,3 +35,13 @@ In ordner src/app:
 ng serve
 Server läuft unter Port 4200
 
+------------------------------------------------------------
+
+Tests:
+ng test
+
+Code Coverage:
+ng test --no-watch --code-coverage
+
+erstellt den Ordner coverage mit einer index.html mit der code coverage
+

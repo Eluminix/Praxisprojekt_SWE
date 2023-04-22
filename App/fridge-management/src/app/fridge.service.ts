@@ -32,6 +32,9 @@ export class FridgeService {
   fridgeItems: FridgeItem[] = [];
 
   fridgeItems$: Observable<FridgeItem[]> = of(this.fridgeItems);
+  
+
+
 
   categories: string[] = ['Milchprodukte','Eier', 'Gemüse', 'Obst', 'Fleisch', 'Fisch', 'Getränke', 'Teigwaren','Soßen & Dressing'];
   
@@ -50,6 +53,7 @@ export class FridgeService {
     const minQuantity = 2; // hier können Sie die Mindestmenge festlegen
     return item.quantity < minQuantity;
   }
+
    getDaysUntilExpiration(item: FridgeItem): number {
     const expiryDate = new Date(item.expiryDate);
     const today = new Date();
@@ -59,9 +63,9 @@ export class FridgeService {
   }
 
 
-private dataurl = 'http://localhost:3000/data';
-private itemsurl = 'http://localhost:3000/items';
-private shoppinglisturl = 'http://localhost:3000/shoppinglist'
+dataurl = 'http://localhost:3000/data';
+itemsurl = 'http://localhost:3000/items';
+shoppinglisturl = 'http://localhost:3000/shoppinglist'
 
   data: any;
   itemsData: any;

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FridgeItem } from '../fridge-item.model';
 import { FridgeService } from '../fridge.service';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import { FridgeAddComponent } from '../fridge-add/fridge-add.component';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 
 
@@ -15,30 +16,31 @@ import { FridgeAddComponent } from '../fridge-add/fridge-add.component';
 })
 export class FridgeListComponent implements OnInit {
 
+  
   newFridgeItem: FridgeItem = { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbs: 1  };
   newItemId: number = 0;
   displayedColumns: string[] = ['name', 'quantity', 'expiryDate'];
   categories: string[] = ['Milchprodukte','Eier', 'Gemüse', 'Obst', 'Fleisch', 'Fisch', 'Getränke', 'Teigwaren','Soßen & Dressing'];
   dataSource: MatTableDataSource<FridgeItem>  = new MatTableDataSource<FridgeItem>();
   
-  fridgeItems: FridgeItem[] = [];
+ fridgeItems: FridgeItem[] = [];
 
   selectedItem: any;
+  
 
 
-  constructor(private fridgeService: FridgeService,public dialog: MatDialog) { }
+  constructor(private fridgeService: FridgeService,public dialog: MatDialog, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getItemsData();
-    
-   // this.updateItemsData();
-
-
-
-   
   }
 
+
+
+  
+
   getItemsData(): void {
+
     this.fridgeService.getItemsData().subscribe((data: any) => {
       console.log(data);
       this.fridgeItems = data;
@@ -59,7 +61,8 @@ export class FridgeListComponent implements OnInit {
         console.error(error);
       }
     });
-    location.reload();
+    this.fridgeItems.push(this.newFridgeItem);
+    this.dataSource.data = this.fridgeItems;
   }
 
 
@@ -67,7 +70,9 @@ export class FridgeListComponent implements OnInit {
     this.fridgeService.deleteItem(id).subscribe(() => {
       this.getItemsData();
     });
-    location.reload();
+    this.fridgeItems = this.fridgeItems.filter(item => item.id !== id);
+    this.dataSource.data = this.fridgeItems;
+   
   }
  
 
