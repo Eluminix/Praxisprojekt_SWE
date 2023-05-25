@@ -21,6 +21,7 @@ export class FridgeStatsComponent implements OnInit {
   totalCapacity: number = 0;
   totalUsedCapacity: number = 0;
   totalFreeCapacity: number = 0;
+  totalQuantities: number = 0;
   avgQuantity: number = 0;
   minQuantity: number = 0;
   maxQuantity: number = 0;
@@ -36,21 +37,35 @@ export class FridgeStatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfileData();
+    this.createCharts();
+  }
+
+  createCharts() {
     this.fridgeService.getItemsData().subscribe((data: any) => {
       this.fridgeItems = data;
-      this.totalItems = this.fridgeItems.length;
-     
-      this.totalUsedCapacity = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
-      this.totalFreeCapacity = this.totalCapacity - this.totalUsedCapacity;
+
+      this.setEntireContentData();
+      this.setCategoryData();
       
-  // Calculate average, minimum and maximum quantities of all items
-      const totalQuantities = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
-      this.avgQuantity = totalQuantities / this.totalItems;
-      this.minQuantity = Math.min(...this.fridgeItems.map(item => item.quantity));
-      this.maxQuantity = Math.max(...this.fridgeItems.map(item => item.quantity));
+      this.createEnitreContentChart();
+      this.createCategoryChart();
+    });
+  }
 
- const filteredItems = this.fridgeItems.filter(item => item.category === this.fridgeItems[0].category);
+  setEntireContentData() {
+    this.totalItems = this.fridgeItems.length;
+     
+    this.totalUsedCapacity = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
+    this.totalFreeCapacity = this.totalCapacity - this.totalUsedCapacity;
+    
+// Calculate average, minimum and maximum quantities of all items
+    this.totalQuantities = this.fridgeItems.reduce((total, item) => total + item.quantity, 0);
+    this.avgQuantity = this.totalQuantities / this.totalItems;
+    this.minQuantity = Math.min(...this.fridgeItems.map(item => item.quantity));
+    this.maxQuantity = Math.max(...this.fridgeItems.map(item => item.quantity));
+  }
 
+  setCategoryData() {
     for (let index = 0; index < this.fridgeService.categories.length; index++) {
       var filter = this.fridgeItems.filter(item => item.category === this.fridgeService.categories[index]);
       this.mappedCategory.push({name: this.fridgeService.categories[index], quantity: filter.length})
@@ -64,17 +79,13 @@ export class FridgeStatsComponent implements OnInit {
     this.mappedCategory.forEach(element => {
       this.data.push(element.quantity)
     });
-
-    this.createPieChart();
-    this.createCategoryChart();
-    });
-  
- //   this.fridgeItems = this.fridgeService.getFridgeItems();
-   
-
   }
 
-  createPieChart() {
+
+
+
+
+  createEnitreContentChart() {
     this.chart = new Chart("MyChart", {
       type: 'bar', //this denotes tha type of chart
 
@@ -124,7 +135,7 @@ export class FridgeStatsComponent implements OnInit {
 
 
   getProfileData() {
-    this.fridgeService.getData().subscribe((data: any) => {
+    this.fridgeService.getProfileConfigurationData().subscribe((data: any) => {
       this.profileData = data;
       this.totalCapacity = this.profileData.capacity;
       

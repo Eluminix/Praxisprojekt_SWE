@@ -8,6 +8,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class FridgeAddUnitComponent {
   unit: string = "";
+  backdropClick$: any;
+  
   
 
   constructor(public dialogRef: MatDialogRef<FridgeAddUnitComponent>) { }
@@ -15,16 +17,22 @@ export class FridgeAddUnitComponent {
 
  
   ngOnInit(): void {
+    this.getBackdropClick();
+    }
 
-    const backdropClick$ = this.dialogRef.backdropClick();
-    if (backdropClick$) {
-      backdropClick$.subscribe(() => {
+ 
+  
+  getBackdropClick() {
+    this.backdropClick$ = this.dialogRef.backdropClick();
+    if (this.backdropClick$) {
+      this.backdropClick$.subscribe(() => {
         this.cancel();
       });
     }
+  }
 
    
-  }
+  
 
   cancel(): void {
     this.dialogRef.close(false);

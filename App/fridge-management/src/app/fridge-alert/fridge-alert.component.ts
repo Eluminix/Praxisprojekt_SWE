@@ -22,6 +22,11 @@ export class FridgeAlertComponent {
   ) {}
 
   ngOnInit() {
+  this.expiringAndLowQuantityAlert();
+
+  }
+
+  expiringAndLowQuantityAlert() {
     this.fridgeService.getItemsData().subscribe((data: any) => {
       this.fridgeItems= data;
         const expiringItems = this.fridgeItems.filter((item) => {
@@ -37,6 +42,8 @@ export class FridgeAlertComponent {
           this.snackBar.open(message, '', { duration: 5000, panelClass: ['warn-snackbar'] });
         }
     });
-
   }
+
+
+
 }

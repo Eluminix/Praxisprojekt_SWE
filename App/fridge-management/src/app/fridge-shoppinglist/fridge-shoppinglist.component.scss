@@ -1,5 +1,5 @@
 .container {
-    height: 100vh;
+    height: 100%;
     background: linear-gradient(to right, #f2994a, #f2c94c);
     border-radius: 10px;
     flex-direction: column;
@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 

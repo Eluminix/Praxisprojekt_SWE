@@ -29,10 +29,10 @@ describe('FridgeListComponent', () => {
 
 
   beforeEach(async () => {
-    mockFridgeService = jasmine.createSpyObj('FridgeService', ['getItemsData', 'updateItemsData', 'deleteItem']);
+    mockFridgeService = jasmine.createSpyObj('FridgeService', ['getItemsData', 'addItem', 'deleteItem']);
     dialog = jasmine.createSpyObj('MatDialog', ['open']);
     mockFridgeService.getItemsData.and.returnValue(of(mockFridgeItems));
-    mockFridgeService.updateItemsData.and.returnValue(of(null));
+    mockFridgeService.addItem.and.returnValue(of(null));
     mockFridgeService.deleteItem.and.returnValue(of(null));
   
     await TestBed.configureTestingModule({
@@ -59,11 +59,11 @@ describe('FridgeListComponent', () => {
     expect(component.dataSource.data).toEqual(mockFridgeItems);
   });
 
-  it('should call FridgeService.updateItemsData and add new item', () => {
+  it('should call FridgeService.addItem and add new item', () => {
     const mockData = {name: 'Test Item', quantity: 1, date: new Date(), category: 'Test', notes: '', amount: 0, kcal: 0, sugar: 0, fat: 0, protein: 0, carbs: 0 };
     component.newItemId = 3;
-    component.updateItemsData(mockData);
-    expect(mockFridgeService.updateItemsData).toHaveBeenCalledWith({
+    component.addItem(mockData);
+    expect(mockFridgeService.addItem).toHaveBeenCalledWith({
       id: 3,
       name: 'Test Item',
       quantity: 1,
@@ -100,9 +100,9 @@ describe('FridgeListComponent', () => {
     const dialogRefSpy = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
     dialogRefSpy.afterClosed.and.returnValue(of(true));
     const dialogSpy = spyOn(TestBed.inject(MatDialog), 'open').and.returnValue(dialogRefSpy);
-    const updateItemsDataSpy = spyOn(component, 'updateItemsData');
+    const updateItemsDataSpy = spyOn(component, 'addItem');
   
-    component.openDialog();
+    component.openAddItemDialog();
   
     expect(dialogSpy).toHaveBeenCalledWith(FridgeAddComponent);
     expect(dialogRefSpy.afterClosed).toHaveBeenCalled();

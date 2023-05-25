@@ -37,7 +37,7 @@ describe('FridgeService', () => {
   });
 
   it('should return days until expiration', () => {
-    const item = { id: 1, name: 'Test', quantity: 1, expiryDate: new Date(2023, 4, 1), category: 'Test', notes: '', amount: 0, kcal: 0, sugar: 0, fat: 0, protein: 0, carbs: 0 };
+    const item = { id: 1, name: 'Test', quantity: 1, expiryDate: new Date(2024, 4, 1), category: 'Test', notes: '', amount: 0, kcal: 0, sugar: 0, fat: 0, protein: 0, carbs: 0 };
     const result = fridgeService.getDaysUntilExpiration(item);
     expect(result).toBeGreaterThan(0);
   });
@@ -48,7 +48,7 @@ describe('FridgeService', () => {
 
   it('should retrieve data from the API via GET', () => {
     const mockData = { username:'Hansi Bär',usermail:'test@web.de',userpassword:'wqe',units:['Seitenfach','Gefrierfach','Hauptfach'],capacity:165,measurementSetting:'imperial',languageSetting:'deutsch',localizationSetting:'eur',autoAddSetting:false,alertSetting:false};
-    fridgeService.getData().subscribe(data => {
+    fridgeService.getProfileConfigurationData().subscribe(data => {
       expect(data).toEqual(mockData);
     });
     const req = httpMock.expectOne(fridgeService.dataurl);
@@ -100,7 +100,7 @@ describe('FridgeService', () => {
     const newItem: FridgeItem = { id: 1, name: 'Käse', quantity: 1, expiryDate: new Date(2023, 4, 1), category: 'Milchprodukte', notes: '', amount: 50, kcal: 200, sugar: 1, fat: 10, protein: 5, carbs: 10 };
     const expectedData: FridgeItem = { ...newItem };
   
-    fridgeService.updateItemsData(newItem).subscribe((data: FridgeItem) => {
+    fridgeService.addItem(newItem).subscribe((data: FridgeItem) => {
       expect(data).toEqual(expectedData);
     });
   
