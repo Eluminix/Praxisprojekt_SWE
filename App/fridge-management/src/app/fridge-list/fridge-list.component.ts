@@ -49,16 +49,16 @@ export class FridgeListComponent implements OnInit {
   }
 
   
-  updateItemsData(item:any) {
+  addItem(item:any) {
     this.newItemId = this.fridgeItems.length + 1;
     console.log(this.newItemId)
     this.newFridgeItem = {id: this.newItemId, name: item.name, quantity: item.quantity, expiryDate: item.date, category: item.category, notes: item.notes, amount: item.amount, kcal: item.kcal, sugar: item.sugar,fat: item.fat,protein: item.protein, carbs: item.carbs };
-    this.fridgeService.updateItemsData(this.newFridgeItem).subscribe({
+    this.fridgeService.addItem(this.newFridgeItem).subscribe({
       next: () => {
         console.log('Daten erfolgreich aktualisiert.');
       },
       error: (error) => {
-        console.error(error);
+        throw error
       }
     });
     this.fridgeItems.push(this.newFridgeItem);
@@ -77,19 +77,16 @@ export class FridgeListComponent implements OnInit {
  
 
 
-  onSelect(item: FridgeItem): void {
-    this.selectedItem = item;
-  }
 
 
 
- openDialog() {  
+ openAddItemDialog() {  
   const dialogRef = this.dialog.open(FridgeAddComponent);
  
   dialogRef.afterClosed().subscribe(result => {
 
     if (result != false) {
-      this.updateItemsData(result);
+      this.addItem(result);
     }
     
   });

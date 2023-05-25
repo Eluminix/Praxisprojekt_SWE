@@ -44,6 +44,11 @@ export class FridgeDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fridgeService: FridgeService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.setItemDetailData();
+   
+  }
+
+  setItemDetailData() {
     this.route.paramMap.subscribe(params => {
       this.itemId = Number(params!.get('id'));
     //  this.item = this.fridgeService.getFridgeItemById(this.itemId);
@@ -68,21 +73,11 @@ export class FridgeDetailsComponent implements OnInit {
     this.carbsValue = item.carbs;
       })
     });
-
-
-   
-   
   }
 
  
 
-  updateFridgeItem(item: FridgeItem): void {
-    // Implement the update functionality here
-  }
-
-  deleteFridgeItem(itemId: number): void {
-    // Implement the delete functionality here
-  }
+ 
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

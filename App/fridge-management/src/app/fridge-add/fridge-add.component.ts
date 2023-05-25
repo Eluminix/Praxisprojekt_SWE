@@ -33,15 +33,19 @@ export class FridgeAddComponent implements OnInit {
 
 ngOnInit(): void {
     this.categories = this.fridgeService.categories;
+    this.getBackdropClick();
+  }
 
-    this.backdropClick$ = this.dialogRef.backdropClick();
+getBackdropClick() {
+  this.backdropClick$ = this.dialogRef.backdropClick();
   if (this.backdropClick$) {
     this.backdropClick$.subscribe(() => {
       this.cancel();
     });
   }
+}
 
-  }
+
 
   cancel(): void {
     this.dialogRef.close(false);

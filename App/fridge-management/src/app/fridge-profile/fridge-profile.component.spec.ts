@@ -23,11 +23,11 @@ describe('FridgeProfileComponent', () => {
   let mockFridgeService: jasmine.SpyObj<FridgeService>;
 
   beforeEach(async () => {
-    mockFridgeService = jasmine.createSpyObj('FridgeService', ['getData', 'updateData', 'deleteData']);
+    mockFridgeService = jasmine.createSpyObj('FridgeService', ['getProfileConfigurationData', 'updateData', 'deleteData']);
     mockFridgeService.updateData.and.returnValue(of(null));
     mockFridgeService.deleteData.and.returnValue(of(null));
    
-    mockFridgeService.getData.and.returnValue(of({
+    mockFridgeService.getProfileConfigurationData.and.returnValue(of({
       units: ['kg', 'g', 'oz'],
       capacity: 10,
       measurementSetting: 'metric',
@@ -61,10 +61,10 @@ describe('FridgeProfileComponent', () => {
 
   it('should retrieve data and update component properties', () => {
     // Act
-    component.getData();
+    component.getProfileConfigurationData();
 
     // Assert
-    expect(mockFridgeService.getData).toHaveBeenCalled();
+    expect(mockFridgeService.getProfileConfigurationData).toHaveBeenCalled();
     expect(component.units).toEqual(['kg', 'g', 'oz']);
     expect(component.capacity).toBe(10);
     expect(component.measurementSetting).toBe('metric');

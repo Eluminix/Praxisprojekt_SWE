@@ -36,15 +36,15 @@ export class FridgeProfileComponent {
   ngOnInit() {
    // this.user = this.authService.getCurrentUser();
   
-   this.getData();
+   this.getProfileConfigurationData();
 
   }
 
   
 
  
-  getData() {
-    this.fridgeService.getData().subscribe((data: any) => {
+  getProfileConfigurationData() {
+    this.fridgeService.getProfileConfigurationData().subscribe((data: any) => {
       this.data = data;
       this.units = this.data.units;
       console.log(this.units)
@@ -112,7 +112,7 @@ export class FridgeProfileComponent {
   deleteUnit(unit :any) {
     console.log(unit)
     this.fridgeService.deleteData(unit).subscribe(() => {
-      this.getData();
+      this.getProfileConfigurationData();
     });
     this.units = this.units.filter(item =>  item !== unit);  
   }

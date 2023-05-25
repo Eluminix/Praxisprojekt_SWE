@@ -3,7 +3,7 @@
   
     <h2>Artikel in geringer Menge:</h2>
     <br>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <table mat-table [dataSource]="lowQuantityDataSource" class="mat-elevation-z8 demo-table">
       <!-- Position Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -27,7 +27,7 @@
     <h2>Verfallende Artikel:</h2>
     <br>
     
-    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8 demo-table">
+    <table mat-table [dataSource]="soonToExpireDataSource" class="mat-elevation-z8 demo-table">
       <!-- Position Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -57,7 +57,7 @@
     <button mat-raised-button (click)="openDialog()" class="demo-button">
       Eintrag hinzufügen
     </button>
-    <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8 demo-table">
+    <table mat-table [dataSource]="shoppingListDataSource" class="mat-elevation-z8 demo-table">
       <!-- Position Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -79,12 +79,14 @@
           </div>
         </td>
       </ng-container>
+      
     
     
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <br>
   </div>
 
    

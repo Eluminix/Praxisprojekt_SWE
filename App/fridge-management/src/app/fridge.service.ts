@@ -18,7 +18,11 @@ export class FridgeService {
   fridgeItem: FridgeItem =   { id: 1, name: 'Milch', quantity: 2, expiryDate: new Date(2023, 4, 1), category: "Milchprodukte", notes: "test", amount: 12, kcal: 1, sugar: 1,fat: 1,protein: 1, carbs: 1 };
   fridgeItemList: FridgeItem[] = [];
 
- 
+  minQuantity: number = 0;
+  expiryDate: Date = new Date();
+  today: Date = new Date();
+  timeDiff: number = 0;
+  daysDiff: number = 0;
  
  
 
@@ -50,16 +54,16 @@ export class FridgeService {
 
 
  isLowOnQuantity(item: FridgeItem): boolean {
-    const minQuantity = 2; // hier können Sie die Mindestmenge festlegen
-    return item.quantity < minQuantity;
+    this.minQuantity = 2; // hier können Sie die Mindestmenge festlegen
+    return item.quantity < this.minQuantity;
   }
 
    getDaysUntilExpiration(item: FridgeItem): number {
-    const expiryDate = new Date(item.expiryDate);
-    const today = new Date();
-    const timeDiff = expiryDate.getTime() - today.getTime();
-    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    return daysDiff;
+    this.expiryDate = new Date(item.expiryDate);
+    this.today = new Date();
+    this.timeDiff = this.expiryDate.getTime() - this.today.getTime();
+    this.daysDiff = Math.ceil(this.timeDiff / (1000 * 3600 * 24));
+    return this.daysDiff;
   }
 
 
@@ -75,7 +79,7 @@ shoppinglisturl = 'http://localhost:3000/shoppinglist'
   }
 
   // Profil
-  getData() {
+  getProfileConfigurationData() {
     return this.http.get(this.dataurl);
   }
 
@@ -98,7 +102,7 @@ shoppinglisturl = 'http://localhost:3000/shoppinglist'
   
 
 
-  updateItemsData(newData: FridgeItem): Observable<any> {
+  addItem(newData: FridgeItem): Observable<any> {
     return this.http.post(this.itemsurl, newData);
   }
 
